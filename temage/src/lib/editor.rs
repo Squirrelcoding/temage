@@ -105,21 +105,21 @@ pub async fn download_editor() {
     println!("{}", "[3/5] Downloaded index.html".bold().green());
 
     // Download css file and write it to assets/index.43aa000d.css
-    download_file("https://raw.githubusercontent.com/Squirrelcoding/Temage-editor/main/assets/index.43aa000d.css", &format!("/home/{}/.temage-editor/assets/index.43aa000d.css", username)).await;
+    download_file("https://raw.githubusercontent.com/Squirrelcoding/Temage-editor/main/assets/index.css", &format!("/home/{}/.temage-editor/assets/index.css", username)).await;
 
     // Message user of progress
     println!(
         "{}",
-        "[4/5] Downloaded assets/index.43aa000d.css".bold().green()
+        "[4/5] Downloaded assets/index.css".bold().green()
     );
 
     // Download js file and write it to assets/index.f7e602da.js
-    download_file("https://raw.githubusercontent.com/Squirrelcoding/Temage-editor/main/assets/index.f7e602da.js", &format!("/home/{}/.temage-editor/assets/index.f7e602da.js", username)).await;
+    download_file("https://raw.githubusercontent.com/Squirrelcoding/Temage-editor/main/assets/index.js", &format!("/home/{}/.temage-editor/assets/index.js", username)).await;
 
     // Message user of progress
     println!(
         "{}",
-        "[5/5] Downloaded assets/index.f7e602da.js".bold().green()
+        "[5/5] Downloaded assets/index.js".bold().green()
     );
 
     // yay!

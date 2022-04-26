@@ -11,6 +11,11 @@ const sizeEl = document.querySelector('.size')
 const color = document.querySelector('.color')
 const resetBtn = document.querySelector('.btn')
 
+// This variable is to prevent some bug
+
+let currentj = 0;
+
+
 // Get the size of the image
 
 let size = Number(sizeEl.value);
@@ -23,15 +28,11 @@ arr[0] = size;
 let draw = false
 
 
-function populate(size) {
-    
-    // does stuff
+function populate(size) { // does stuff
     container.style.setProperty('--size', size)
 
     // Loops through every pixel, but starts at 1, cause the first pixel is used to store the size of the image
-    for (let i = 1; i < (size * size) + 1; i++) {
-
-        // Initially set all the pixels to 0
+    for (let i = 1; i < (size * size) + 1; i++) { // Initially set all the pixels to 0
         arr[i] = 0;
 
         // Do stuff
@@ -41,9 +42,10 @@ function populate(size) {
 
         // Event listener for when a pixel is drawn on
         div.addEventListener('mousedown', function (e) {
+
             var rect = container.getBoundingClientRect();
 
-            //Get the mouse position, *not* the coordinate
+            // Get the mouse position, *not* the coordinate
             let mousePosition = {
                 x: e.clientX - rect.left,
                 y: e.clientY - rect.top
@@ -52,42 +54,56 @@ function populate(size) {
             // This messy line converts a 2D coordinate into a position on an array
             let j = (Math.ceil(mousePosition.x / (rect.width / size)) - 1) + (size * (Math.ceil(mousePosition.y / (rect.height / size)) - 1))
 
+            // bug prevention thing
+            if (currentj == j) 
+                return;
+            
+
             // Set the array index to the value of the color currently selected. Can you guess why its j + 1 and not j?
             arr[j + 1] = colorToCode(color.value);
 
             // Visually set the color of the pixel to the color currently selected
             div.style.backgroundColor = color.value
+
+            // bug prevention thing
+            currentj = j;
         })
 
 
         // This is so that the user can draw by clicking and holding the mouse
-        div.addEventListener('mouseover', function (e) {
-
-            // idk what draw does
-            if (!draw) 
+        div.addEventListener('mouseover', function (e) { // idk what draw does
+            if (! draw) {
                 return
-            
-                var rect = container.getBoundingClientRect();
-            
+            }
 
-            // Get the mouse position, *not* the coordinate 
+            var rect = container.getBoundingClientRect();
+
+
+            // Get the mouse position, *not* the coordinate
             let mousePosition = {
                 x: e.clientX - rect.left,
                 y: e.clientY - rect.top
             };
 
-            // Convert 2D coordinate to a position on the array
+            // This messy line converts a 2D coordinate into a position on an array
             let j = (Math.ceil(mousePosition.x / (rect.width / size)) - 1) + (size * (Math.ceil(mousePosition.y / (rect.height / size)) - 1))
+
+            // bug prevention thing
+            if (currentj == j) 
+                return;
 
             // Set the array index to the value of the color currently selected.
             arr[j + 1] = colorToCode(color.value);
 
-
             // Visually set the color of the pixel to the color currently selected
+
             div.style.backgroundColor = color.value
+
+            // bug prevention thing
+            currentj = j;
         })
 
-        // idk what this does, but it looks important 
+        // idk what this does, but it looks important
         container.appendChild(div)
     }
 }
@@ -97,15 +113,14 @@ function populate(size) {
 window.addEventListener("mousedown", function (e) {
     draw = true
 })
-window.addEventListener("mouseup", function () {
+window.addEventListener("mouseup", function (e) {
+
     draw = false
 })
 
 
-// Reset and/or draw a new image to draw on 
-function reset() {
-
-    // Reset the array
+// Reset and/or draw a new image to draw on
+function reset() { // Reset the array
     arr = new Uint8Array((size * size) + 1);
 
     // Set the first byte to the width of the image
@@ -132,9 +147,7 @@ sizeEl.addEventListener('keyup', function () {
 
 // Takes a hex value for a color and returns a value from 0 inclusive to 7 inclusive.
 function colorToCode(color) {
-    switch (color) { 
-        
-            // Red
+    switch (color) { // Red
         case "#cd3131":
             return 1;
 
@@ -175,6 +188,7 @@ function colorToCode(color) {
 // Creates a blob from the array, and saves it to the disk with some library.
 export function createFile() {
     var blob = new Blob([arr], {type: "application/octet-stream"});
+
     saveAs(blob, "image.tm");
 }
 

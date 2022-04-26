@@ -1,6 +1,9 @@
 # Temage
 Draw and display pixel art on your terminal
 
+## Version 1.1
+Version 1.1 of temage fixes a few bugs and updates some grammatical errors in the README.md 
+
 ## Usage
 
 ### Display image
@@ -30,6 +33,7 @@ $ temage editor
 ```
 
 It should open a new tab on your web browser and you should see something like this, the worlds-ugliest-editor-made-with-stolen-code!:
+
 <img src="https://i.imgur.com/DEtaqMC.png" width="480px" height="270px"/>
 
 The number on the top right is the dimensions of your image, at the moment you can only set the image to be a square. You can make it as large as 255 before something breaks (that is if your computer can even handle it). With that in mind, feel free to change it as you'd like! 
@@ -112,4 +116,4 @@ Its starting to look like an image, just remove the parentheses...
 
 Fill in the colors, and lets see the image!
 ![final image](https://i.imgur.com/2288Z5t.png)
-Ignore everything else, you see that little drawing in the bottom right corner? Thats what we just made! We made that little image from a list of numbers and elementary school math! Sure, it looks a little off, and there's a percent sign, (it's there for computer reasons) but it works!
+Ignore everything else, you see that little drawing in the bottom left corner? Thats what we just made! We made that little image from a list of numbers and elementary school math! Sure, it looks a little off, and there's a percent sign, (it's there for computer reasons) but it works!
