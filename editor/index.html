@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Temage editor</title>
+    </head>
+    <body>
+            <div class="navbar">
+                <button class="btn">Draw/Reset</button>
+                <button onclick="createFile()">Create file</button>
+                <select class="color">
+                    <option value="#cd3131" style="background-color: #cd3131">Red</option>
+                    <option value="#0dbc79" style="background-color: #0dbc79">Green</option>
+                    <option value="#2472c8" style="background-color: #2472c8">Blue</option>
+                    <option value="#e5e510" style="background-color: #e5e510">Yellow</option>
+                    <option value="#bc3fbc" style="background-color: #bc3fbc">Purple</option>
+                    <option value="#11a8cd" style="background-color: #11a8cd">Cyan</option>
+                    <option value="#e5e5e5" style="background-color: #e5e5e5">White</option>
+                    <option value="#3d3d3d" style="background-color: #3d3d3d; color:white">Eraser</option>
+                </select>
+                <input type="number" value="10" class="size">
+            </div>
+            <div class="container"></div>
+        <script type="module" src="/main.js"></script>
+    </body>
+</html>
